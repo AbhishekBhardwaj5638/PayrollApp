@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showI="navigation_view">
+
+
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_home_24dp"
+            android:title="@string/home"
+            />
+        <item
+            android:id="@+id/calender"
+            android:icon="@drawable/ic_calender_24dp"
+            android:title="@string/calender"/>
+
+
+
+        <item
+                    android:id="@+id/earnings"
+                    android:title="@string/earnings"
+                    android:icon="@drawable/ic_earnings_24dp"
+                    />
+        <item
+                    android:title="@string/message"
+                    android:id="@+id/message"
+                    android:icon="@drawable/ic_message_24dp"
+                    />
+        <item
+                    android:id="@+id/flight"
+                    android:title="Time Away"
+                    android:icon="@drawable/ic_flight_24dp"/>
+
+
+</menu>
