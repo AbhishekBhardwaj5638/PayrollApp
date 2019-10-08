@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "272706497867",
+    "firebase_url": "https://payrollapp-ff168.firebaseio.com",
+    "project_id": "payrollapp-ff168",
+    "storage_bucket": "payrollapp-ff168.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272706497867:android:6db15357b95e82ef624cce",
+        "android_client_info": {
+          "package_name": "com.bhardwaj.abhishek.payrollapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272706497867-47o6l0nm2crd2pqq6o8e6kej3ph1gfgh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bhardwaj.abhishek.payrollapp",
+            "certificate_hash": "e59d97f9ed20a6dcc0688fe37e7ce45bd6206071"
+          }
+        },
+        {
+          "client_id": "272706497867-efrskod550bm7a2lta5ukq6p083druk7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcBqYLyjWVHhV73iABEvhss6aaz_Osn3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272706497867-efrskod550bm7a2lta5ukq6p083druk7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

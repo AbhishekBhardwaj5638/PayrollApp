@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <ProgressBar
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/progress_bar"
+        android:layout_margin="5sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/earning_fragment" />
-</RelativeLayout>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView"
+
+        />
+</LinearLayout>

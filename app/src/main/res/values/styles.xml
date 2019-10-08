@@ -19,4 +19,10 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="ImageAttr">
+        <item name="  android:maxHeight">30dp</item>
+        <item name="android:maxWidth">30dp</item>
+
+    </style>
+
 </resources>
