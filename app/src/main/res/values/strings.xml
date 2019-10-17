@@ -15,4 +15,7 @@
     <string name="message_fragment">Message Fragment</string>
     <string name="home_fragment">Home Fragment</string>
     <string name="calender_fragment">Calender Fragment</string>
+    <string name="verifiedCompany">Company Id is verified</string>
+    <string name="invalidCompany">Invalid Company Id</string>
+    <string name="help">help</string>
 </resources>

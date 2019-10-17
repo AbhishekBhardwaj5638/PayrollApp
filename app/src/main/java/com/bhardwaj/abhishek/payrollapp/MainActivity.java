@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         s.setSpan(new TextAppearanceSpan(this,R.style.TextAppearance44),0,s.length(),0);
         tools.setTitle(s); // assigning new string as item's title
 */
-
+        openHome();
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -59,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
                 int id = menuItem.getItemId();
                 switch (id) {
                     case R.id.home:
-                        Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+                        openHome();
+
                         if (drawerLayout.isDrawerOpen(GravityCompat.START)){
                             drawerLayout.closeDrawer(GravityCompat.START);
                         }
@@ -148,14 +149,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void openHome() {
+        Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+    }
+
     private void openMessages() {
         Toast.makeText(MainActivity.this, "Message", Toast.LENGTH_SHORT).show();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new MessageFragment()).commit();
     }
 
     private void openEarnings() {
+        Bundle bundle = getIntent().getExtras();
         Toast.makeText(MainActivity.this, "Earnings", Toast.LENGTH_SHORT).show();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new EarningFragment()).commit();
+        EarningFragment earningFragment =new EarningFragment();
+        earningFragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,earningFragment).commit();
     }
 
     private void openCalender() {

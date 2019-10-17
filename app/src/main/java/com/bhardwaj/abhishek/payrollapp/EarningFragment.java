@@ -1,6 +1,7 @@
 package com.bhardwaj.abhishek.payrollapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -23,6 +24,7 @@ import com.bhardwaj.abhishek.payrollapp.Adapters.RecyclerListAdapter;
 import com.bhardwaj.abhishek.payrollapp.Model.Earnings;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -30,10 +32,12 @@ public class EarningFragment extends Fragment {
     Context c;
     ProgressBar progressBar;
     RecyclerView recyclerView;
+    String companies,userId;
 
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-    CollectionReference collectionReference = firestore.collection("1449_earnings");
+    CollectionReference collectionReference ;//= firestore.collection("Companies/PP180000/Users/1500/PayStubs/A00202");
     private RecyclerListAdapter recyclerListAdapter;
+    String path;
     public EarningFragment() {
         // Required empty public constructor
     }
@@ -50,7 +54,7 @@ public class EarningFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
 
          final View view = inflater.inflate(R.layout.earning_fragment, container, false);
          recyclerView = view.findViewById(R.id.recyclerView);
@@ -59,6 +63,8 @@ public class EarningFragment extends Fragment {
         progressBar = view.findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.INVISIBLE);
         startAsyncTask();
+
+
 
 
 
@@ -80,12 +86,17 @@ public class EarningFragment extends Fragment {
 
         @Override
         protected FirestoreRecyclerOptions<Earnings> doInBackground(Void... voids) {
-            Query query = collectionReference.orderBy("amount", Query.Direction.DESCENDING);
+            Bundle extras = getArguments();
+            companies = extras.getString("companyId");
+            userId = extras.getString("uId");
+            collectionReference = firestore.collection("Companies").document(companies)
+                    .collection("Users").document(userId).collection("PayStubs");
+            Query query = collectionReference;
             FirestoreRecyclerOptions<Earnings> options = new FirestoreRecyclerOptions.Builder<Earnings>()
                     .setQuery(query, Earnings.class)
                     .build();
             try {
-                Thread.sleep(1000);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
 
                 e.printStackTrace();
@@ -100,7 +111,6 @@ public class EarningFragment extends Fragment {
             super.onProgressUpdate(values);
             progressBar.setProgress(values[0]);
         }
-
         @Override
         protected void onPostExecute(FirestoreRecyclerOptions<Earnings> earningFirestoreRecyclerOptions) {
             super.onPostExecute(earningFirestoreRecyclerOptions);
@@ -108,32 +118,28 @@ public class EarningFragment extends Fragment {
             Toast.makeText(getContext(), "onPostExecute", Toast.LENGTH_SHORT).show();
             progressBar.setProgress(0);
             progressBar.setVisibility(View.INVISIBLE);
-            recyclerListAdapter = new RecyclerListAdapter(earningFirestoreRecyclerOptions);
+            recyclerListAdapter = new RecyclerListAdapter(earningFirestoreRecyclerOptions,getContext());
             recyclerListAdapter.startListening();
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             recyclerView.setAdapter(recyclerListAdapter);
+            recyclerListAdapter.setOnItemClickListener(new RecyclerListAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                    Earnings earnings = documentSnapshot.toObject(Earnings.class);
+                    String id = documentSnapshot.getId();
+                    Toast.makeText(c, "Position"+position + "ID :"+id, Toast.LENGTH_SHORT).show();
+                    String path = documentSnapshot.getReference().getPath();
+
+
+                }
+            });
 
         }
     }
 
 
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-
-        /*
-        recyclerListAdapter = new RecyclerListAdapter(getContext());
-
-*/
-
-
-
-
-
-    }
 
 
 

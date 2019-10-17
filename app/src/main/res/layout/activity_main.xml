@@ -42,6 +42,7 @@
             app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
             app:tabTextColor="@android:color/white"
             app:tabMode="fixed"
+
         >
 
             <com.google.android.material.tabs.TabItem

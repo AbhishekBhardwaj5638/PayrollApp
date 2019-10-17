@@ -3,6 +3,16 @@ package com.bhardwaj.abhishek.payrollapp.Model;
 public class Earnings {
 
     private float amount;
+
+    public float getFedTax() {
+        return fedTax;
+    }
+
+    public void setFedTax(float fedTax) {
+        this.fedTax = fedTax;
+    }
+
+    private float fedTax;
     private String date;
     private String payStubId;
 
